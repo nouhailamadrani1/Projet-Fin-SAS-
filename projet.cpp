@@ -4,13 +4,24 @@
 #include<stdbool.h>
 #include<time.h>
 		
-		typedef struct produitAchete{
-			int  date;
+	    typedef struct Date 
+        {
+	      int day ,month ,year;
+        }date;
+		
+		
+		typedef struct produitAchete
+        {
+			date  d;
 			float prix_TTC;
-			float prix;
+			float prix_Total;
+			char nom[20];
+		    int code;
+	    	int quantite ; 
 		}achete;
-	achete mdcv[100];
-	 int nmv=0;
+		
+ 	      achete mdcv[100];
+	      int nmv=0;
 		
 		//struct de medicament
 		
@@ -24,8 +35,8 @@
 		
 		// nombre de medicament "nm"
 		// type "medicament"
-		int nm=0;
-		medicament mdc[100];
+		   int nm=0;
+		   medicament mdc[100];
 		
 		
     //		*********************************************************************************
@@ -47,23 +58,24 @@
 					
 					mdc[nm].prix_TTC = mdc[nm].prix + (mdc[nm].prix*0.15);
 					nm++;
+
 				
 			}
 		
 		//		*********************************************************************************
 		//deuxieme fonction de ajoute des nouveaux medicaments
 		// n variable de nombre de medicament 
-		void ajouterPlusieursMedicaments()
-		{
-		   int n , i; 
+		   void ajouterPlusieursMedicaments()
+		   {
+		     int n , i; 
 				printf("entrer le nombre de medicament  que vous souhaitez ajouter : \n");
 				scanf("%d",&n);
 				
-	     	for(i=0;i<n;i++)
-	    	{
-	      		ajouterMedicament();
-	    	}
-	    }
+                    for(i=0;i<n;i++)
+                    {
+                      ajouterMedicament();
+                    }
+	       }
 		//		*********************************************************************************
 		//AFFICHER
 		   void afficher()
@@ -75,8 +87,8 @@
 		       {
 			    	printf("   le nom      |             code                  |       quantite\n");
 			    	printf("--------- -----|-----------------------------------|-------------------\n");
-			    	
-			     	printf("      %s       |                %d                 |      %d          \n",mdc[i].nom,mdc[i].code,mdc[i].quantite);
+			     	printf("      %s       |                %d                 |      %d          \n",
+                    mdc[i].nom,mdc[i].code,mdc[i].quantite);
 			       
 			       		                    	printf("  le prix  \n ");
                     printf("--------- -------------------------------------------------------------\n");
@@ -93,18 +105,18 @@
 		
 	
 		
+		
+		
+		//		*********************************************************************************
 		//  STRCMP Cette fonction permet de comparer deux chaînes de caractères et de savoir
 		// si la première est inférieure, égale ou supérieure à la seconde
 		//fonctionlisterSelonL'ordreAlphabetique
-		
-		//		*********************************************************************************
-		
-		void listerSelonLordreAlphabetique(){
-		
-		int i,j;
-		j=i+1;
-		
-		for(i=0;i<nm;i++)
+
+		void listerSelonLordreAlphabetique()
+        {
+		    int i,j;
+		    j=i+1;
+		    for(i=0;i<nm;i++)
 			{
 				for(j=i+1;j<nm;j++)
 				{
@@ -122,27 +134,25 @@
 		
 	
 		//		*********************************************************************************
-	void listerSelonDecroissantPrix()
-	{
-		
-	        	int i, j;
-		
-		j=i+1;
-		for(i=0;i<nm;i++)
-		{
-			for(j=i+1;j<nm;j++)
-			{
-					if(mdc[i].prix>mdc[j].prix)
-					{
-				    	medicament q;
-						      q=mdc[i];
-						      mdc[i]=mdc[j];
-						      mdc[j]=q;
-					}
-			}
-		}
-			afficher();
-	}
+            void listerSelonDecroissantPrix()
+            {
+                int i, j;
+                j=i+1;
+                    for(i=0;i<nm;i++)
+                    {
+                        for(j=i+1;j<nm;j++)
+                        {
+                                if(mdc[i].prix>mdc[j].prix)
+                                {
+                                    medicament q;
+                                        q=mdc[i];
+                                        mdc[i]=mdc[j];
+                                        mdc[j]=q;
+                                }
+                        }
+                    }
+                        afficher();
+                }
 
 		//		*********************************************************************************
 		// MUNEU
@@ -202,94 +212,90 @@
 		}
 		//		*********************************************************************************
 		//RECHERCHE un medicament par code
-     void rechercherParCode(){
-	   int i,n;
+            void rechercherParCode(){
+            int i,n;
 
-       bool trouver = true;
-       printf("Entrer le code  :");
-          scanf("%d",&nm); 
-   
-           for(i=0; i < nm; i++)
-		   {
-   	   			if(mdc[i].code==n)
-		         {
-   			trouver = false;
-   			
-		          }
-   			}
-		   
-		   if(trouver)
-		   printf("ce medicament en stock");
-			   else
-			   printf("introuvable");
-}
-
-
-
-		   //RECHERCHE un medicament par  Quantite
-		void rechercheMedicamentParQuantite(){
-			
-			int i,Q;
-			bool trouver=false;
-			
-		   printf("Entrer la quantite de medicament : \n");
-		   scanf("%d",&Q); 
-		   
-		   for(i=0; i < nm; i++)
-		   {
-		   		if(mdc[i].quantite>=Q)
-				   {
-		   			trouver=true;
-		   							   
-				   }
-		   }	
-		   if(trouver)   
-             printf("ce medicament en stock");
-            else
-             printf("introuvable");
-}
-		
-//		*********************************************************************************
-
-     void etatDeStock()
-	 {
-	
-    	int i;
-   	        printf(" les produits dont la quantité est inférieure à 3 son\n ");
-    	for(i=0;i<nm;i++)
-	   {
-        	 if(mdc[i].quantite<=3)
-			{
-			   		printf("nom=>  %s  \n",mdc[i].nom);
-			   		printf("code=> %d  \n",mdc[i].code);
-		  	   		printf("quantite=> %d\n",mdc[i].quantite);
-			   		printf("prix=> %.2f\n",mdc[i].prix);
-	        }
+            bool trouver = true;
+            printf("Entrer le code  :\n");
+                scanf("%d",&nm); 
+        
+                for(i=0; i < nm; i++)
+                {
+                        if(mdc[i].code==n)
+                        {
+                    trouver = false;
+                    
+                        }
+                    }
+                
+                if(trouver)
+                printf("ce medicament en stock");
+                    else
+                    printf("introuvable");
         }
-      }
-//		*********************************************************************************
-   void alimenterStock()
-   {
-   	
-		int i,c,Q;
-			
-			printf("entre le code de medicament :");
-			scanf("%d",&c);
-			
-			printf("entre la quantite de medicament :");
-			scanf("%d",&Q);
-			
-			
-			for(i=0;i<nm;i++)
-			{
-			 if(mdc[i].code==c)
-				{
-			    mdc[i].quantite += Q; //medicament[i].quantite =medicament[i].quantite + Q
-			    }
-			 break;
-		   }
-   }  
-		   
+
+
+
+                //RECHERCHE un medicament par  Quantite
+                void rechercheMedicamentParQuantite(){
+                    
+                    int i,Q;
+                    bool trouver=false;
+                    
+                printf("Entrer la quantite de medicament : \n");
+                scanf("%d",&Q); 
+                
+                for(i=0; i < nm; i++)
+                {
+                        if(mdc[i].quantite>=Q)
+                        {
+                            trouver=true;
+                                            
+                        }
+                }	
+                if(trouver)   
+                    printf("ce medicament en stock");
+                    else
+                    printf("introuvable");
+        }
+                
+        //		*********************************************************************************
+
+            void etatDeStock()
+            {
+            
+                int i;
+                    printf(" les produits dont la quantité est inférieure à 3 son\n ");
+                for(i=0;i<nm;i++)
+            {
+                    if(mdc[i].quantite<=3)
+                    {
+                            printf("nom=>  %s  \n",mdc[i].nom);
+                            printf("code=> %d  \n",mdc[i].code);
+                            printf("quantite=> %d\n",mdc[i].quantite);
+                            printf("prix=> %.2f\n",mdc[i].prix);
+                    }
+                }
+            }
+        //		*********************************************************************************
+        void alimenterStock()
+        {
+                int i,c,Q;
+                    printf("entre le code de medicament :\n");
+                      scanf("%d",&c);
+                    printf("entre la quantite de medicament :\n");
+                      scanf("%d",&Q);
+                    
+                     for(i=0;i<nm;i++)
+                     {
+                        if(mdc[i].code==c)
+                        {
+                           mdc[i].quantite += Q; //medicament[i].quantite =medicament[i].quantite + Q
+                        }
+                      
+                    }
+        }  
+                
 
 //		*********************************************************************************
           void supprimerMedicament()
@@ -299,166 +305,115 @@
                     printf("entre le code de medicament que tu vous supprimer : \n");
                       scanf ("%d",&c);
 
-                      for(i=0;i<nm;i++){
-                       if(c == mdc[i].code ){
-                           printf("%d",i);
-                         j = i;
-                       for (i=j;i<nm;i++){
-                           mdc[i]=mdc[i+1];
-                           nm--;
-                          break;
+                      for(i=0;i<nm;i++)
+                      {
+                       if(c == mdc[i].code )
+                      {
+                         printf("%d",i);
+                            j = i;
+                         for (i=j;i<nm;i++)
+                         {
+                             mdc[i]=mdc[i+1];
+                             nm--;
+                             break;
+                         }
                       }
-                     }
-                   }
-          }
+                      } 
+         }
 		
 		
 	
 
 //		*********************************************************************************
-		void acheterMedicament()
-		{
-		   
-		     int i, C, Q,jFin=0;
-		     int now;
-		     
-		    printf("entrer le code de produit : ");
-		    scanf("%d", &C);
 		
-		    printf("entrer la quantite de produit :");
-		    scanf("%d", &Q);
-		    for (i = 0; i < nm; i++)
-		    {
-		        if (mdc[i].code == C)
-		        {
-		            if (mdc[i].quantite >= Q)
-		            {
-		                mdc[i].quantite -= Q;
-		   
-		            }
-		            else
-		            {
-		                printf("introvable!!\n");
-		            }
-		            break;
-		        }
-		        else{
-		            jFin++;//pour chercher si le code existe et refaire condition jusqua la derniere case du tableau 
-		        }
-		    }
-		    if(jFin==nm){
-		                printf("produit introuvable\n");
-		    }
-		    time(NULL);  
-//			 
-             	time_t tt = time(NULL);
-    			struct tm* dt = localtime(&tt);
-             printf(" jour    |     mois    |     ans\n");
-             printf("    %d   |      %d      |     %d  \n",dt->tm_mday,dt->tm_mon+1,dt->tm_year+1900);
-		    mdcv[nmv].prix=mdc[nm].prix;
-		    printf("le prix : %.2f",mdcv[nmv].prix);
-		    
-		    mdcv[nmv].prix_TTC=mdc[nm].prix_TTC;
-		    printf("le prix_TTC : %.2f",mdcv[nmv].prix_TTC);
-		    nmv++;
-		}
-		
-						  
-//		*********************************************************************************
-				void totalPrix()
-				{
-				
-				int i;
-			    float S=0;
-						 
-				for(i=0;i<nmv;i++){
-					
-					S+=mdcv[i].prix;
-				}
-				printf("le prix total : %.2f \n",S);
-					
-					
-			    }
-//		*********************************************************************************
-		void moyenneDesPrix()
-			{
-				
-				int   i;
-				float moyen , S;
-				for(i=0;i<nmv;i++)
-				{
-				
-					S+=mdcv[i].prix;
-					printf("le prix total : %.2f\n",S);
-					moyen = S/nmv;
-					printf("moyenne : %.2f \n",moyen);
-		     	}
-			
-			}
-//		*********************************************************************************
-     maxprixMedicamentVendus(){
-     	int i ;
-     	float  max=mdcv[0].prix;
-     	for(i=0;i<nmv;i++){
-     	if(mdcv[i].prix >max){
-		 
-		 	max=mdcv[i].prix;
-		printf("le max prix : %.2f",max);
-		 }	
-		 }
-	 }
-	 //		*********************************************************************************
-     minprixMedicamentVendus(){
-     	int i ;
-     	float  min=mdcv[0].prix;
-     	for(i=0;i<nmv;i++){
-     	if(mdcv[i].prix <min){
-		 
-		 	min=mdcv[i].prix;
-		printf("le min prix  : %.2f",min);
-		 }	
-		 }
-	 }
-//		*********************************************************************************
-void menuStatistique(){
-	
-	printf("1=> Afficher le total des prix des produits vendus en journee courante \n");
-	printf("2=> Afficher la moyenne des prix des produits vendus en journée courante \n");
-	printf("3=> Afficher le Max des prix des produits vendus en journée courante \n");
-	printf("4=> Afficher le Min des prix des produits vendus en journée courante \n");
+                void acheterMedicament()
+        {
+            // float prixproduits;
+            time_t t = time(NULL);
+            struct tm* datee = localtime(&t);
+            int i, code, quantite,count=0;
 
-}
-//		*********************************************************************************
+                    printf("entrer le code du medicament : ");
+                    scanf("%d", &code);
 
-              	void StatistiqueDeVente(){
-              		
-              		int choixS;
-              		menuStatistique();
-              		printf("entre votre choix\n ");
-              		scanf("  %d",&choixS);
-              		
-              		switch(choixS){
-              		 		case 1 :printf("le total des prix des medicament \n");
-              								totalPrix();
-              			break;
-              				case 2 :printf("la moyenne des prix des medicament \n");
-              				            moyenneDesPrix();
-              			break;
-						 
-              				case 3 :printf("le Max des prix des medicament vendus \n ");
-              				 maxprixMedicamentVendus();
-              		    break;
-              				case 4 :printf("Min des prix des medicament vendus \n");
-              				 minprixMedicamentVendus();
-              			break;		
-              				default: printf("entre un choix entre 1 et 4 \n");
-              			break;
-              			
-					  }
-              			
-				  }
+                    printf("entrer la quantite du medicament :");
+                    scanf("%d", &quantite);
+            for (i = 0; i < nm; i++)
+            {
+                if (mdc[i].code == code)
+                {
+                    if (mdc[i].quantite >= quantite)
+                    {
+                        mdc[i].quantite -= quantite;
+                        mdcv[nmv].code = mdc[i].code;
+                        strcpy(mdcv[nmv].nom,mdc[i].nom);
+                        mdcv[nmv].prix_TTC = mdc[i].prix_TTC;
+                        mdcv[nmv].quantite = quantite;
+                        mdcv[nmv].prix_Total = quantite * mdc[i].prix_TTC;
+                        mdcv[nmv].d.day =datee->tm_mday ;
+                        mdcv[nmv].d.month =datee->tm_mon+1 ;
+                        mdcv[nmv].d.year =datee->tm_year+1900 ;
 
+                        nmv++;
+                    }
+                    else
+                    {
+                        printf("quantite insuffisante\n");
+                    }
+                    break;
+                }
+                else{
+                    count++;//pour chercher si le code existe et refaire condition jusqua la derniere case du tableau 
+                }
+            }
+            if(count==nm){
+                        printf("produit introuvable\n");
+            }
+
+            for( i = 0 ; i < nmv ; i++){
+                printf("%d          %f         %d \n",mdcv[i].code, mdcv[i].prix_TTC , mdcv[i].quantite);
+            }
+        } 
 //		*********************************************************************************
+		 void statistiques(){
+            time_t t = time(NULL);
+            struct tm* datee = localtime(&t);
+            int jour = datee->tm_mday;
+            int mois = datee->tm_mon + 1;
+            int annee = datee->tm_year + 1900;
+            float prixT = 0 , moyenne = 0 ;
+            int i , Totalquantite=0;
+            float min, max;
+            //&&produitvendu[i].d.month==mois&&produitvendu[i].d.year==annee
+            min = mdcv[0].prix_Total;
+            max = mdcv[0].prix_Total;
+            
+            for(i=0;i<nmv ;i++)
+            {
+                if(mdcv[i].d.day==jour&&mdcv[i].d.month==mois&&mdcv[i].d.year==annee)
+                {
+                    prixT += mdcv[i].prix_Total ; //somme prix produit vendu
+                    Totalquantite+=mdcv[i].quantite;
+                }
+                if(max < mdcv[i].prix_Total)
+                {
+                    max = mdcv[i].prix_Total;
+                }
+                if(min > mdcv[i].prix_Total)
+                {
+                    min = mdcv[i].prix_Total;
+                }
+            }
+            moyenne = prixT/(float)Totalquantite ;
+                    // printf("la somme des prix de votre produits vendus est -----> %.3f DH\n",);
+            // printf("le nombres de votre produits vendus est ----->%d PRODUITS\n\n\n",totalquantite);
+            printf("le total des prix des medicament vendus est = %.2f\n",prixT);
+            printf("la moyenne des prix des medicament vendus est = %.2f\n",moyenne);
+            printf("le max des prix des medicament vendus aujourd'hui  : %f\n",max);
+            printf("le min des prix des medicament vendus aujourd'hui  : %f\n",min);
+        }
+//		*********************************************************************************
+ 
 
 		//    MAIN
 		
@@ -467,9 +422,9 @@ void menuStatistique(){
 			int choix;
 		    debut:
 		    menu();
-		    printf("entrer votre choix:\n");
-		    printf("-----------_-\n");
-		    scanf("%d", &choix);
+                printf("entrer votre choix:\n");
+                printf("_-_*-_-_*-_-_*-_-*_-_-*_-_-*_\n");
+                scanf("%d", &choix);
 		    switch(choix){
 		        case 1: 
 		        printf("*****ajouter un nouveau medicament******\n");
@@ -496,23 +451,23 @@ void menuStatistique(){
 		        break;
 		         
 		         case 7: 
-		        printf("**************Acheter produit\n**************");
+		        printf("**************Acheter produit************** \n");
 		        acheterMedicament();
 		        break;
 		         case 8: 
-		        printf("**************Etat Du Stock\n**************");
+		        printf("**************Etat Du Stock************** \n");
 		        etatDeStock();
 		        break;
 		         case 9: 
-		        printf("**************alimenter Le stock\n**************");
+		        printf("**************alimenter Le stock************** \n");
 		        alimenterStock();
 		        break;
                 case 10: 
-		        printf("**************Supprimer les medicaments par code t\n**************");
+		        printf("**************Supprimer les medicaments par code **************\n");
 		        supprimerMedicament();
 		        case 11: 
-		        printf("************** Statistique de vente t\n**************");
-		        StatistiqueDeVente();
+		        printf("************** Statistique de vente **************\n");
+		        statistiques();
 		       
 		        break;
 		    }
