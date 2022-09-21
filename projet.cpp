@@ -158,57 +158,57 @@
 		// MUNEU
 		void menu(){
 			
-		    printf("___________Bonjour___________ \n");
+		    printf("*___________Bonjour___________* \n");
 		    
-	     	printf("\n");
+	     	printf("*\n*");
 	     	
-	        printf("________bienvenu sur votre système_______\n");
+	        printf("*________bienvenu sur votre systeme_______*\n");
 	        
-	    	printf("\n");
+	    	printf("*\n*");
 	   
 	   
-		    printf("1==>ajouter un nouveau medicament\n");
+		    printf("*1==>ajouter un nouveau medicament\n");
 		    
-		    printf("\n");
+		    printf("*\n*");
 		    
-		    printf("2 ==> ajouter plusieurs medicaments \n");
+		    printf("*2 ==> ajouter plusieurs medicaments \n");
 		    
-		    printf("\n");
+		    printf("*\n*");
 		    
-		    printf("3 ==> afficher medicament\n");
+		    printf("*3 ==> afficher medicament\n");
 		    
-		    printf("\n");
+		    printf("*\n*");
 		    
-		    printf("4 ==> tri les medicaments selon L\'ordreAlphabetique\n");
+		    printf("*4 ==> tri les medicaments selon L\'ordreAlphabetique\n");
 		    
-		    printf("\n");
+		    printf("*\n*");
 		    
-		    printf("5 ==> tri les medicaments Selon Decroissant Prix \n");
+		    printf("*5 ==> tri les medicaments Selon Decroissant Prix \n");
 		    
-		    printf("\n");
+		    printf("*\n*");
 		    
-		    printf("6 ==> recherche par code \n");
+		    printf("*6 ==> recherche par code \n");
 		    
-		    printf("\n");
+		    printf("*\n*");
 		    
-		    printf("7 ==> Acheter un medicament \n");
+		    printf("*7 ==> Acheter un medicament \n");
 		    
-		    printf("\n");
+		    printf("*\n*");
 		    
-		    printf("8 ==> Etat de stock \n");
+		    printf("*8 ==> Etat de stock \n");
 		    
-		    printf("\n");  
+		    printf("*\n*");  
 		    
-		    printf("9 ==>alimenter Le stock \n");
+		    printf("*9 ==>alimenter Le stock \n");
 		    
-		   printf("\n");
+		   printf("*\n*");
 		   
-		   printf("10 ==>Supprimer les medicaments par code \n");
+		   printf("*10 ==>Supprimer les medicaments par code \n");
 		    
-		   printf("\n");
-		   printf("11 ==>Statistique De Vente \n");
+		   printf("*\n*");
+		   printf("*11 ==>Statistique De Vente \n");
 		    
-		   printf("\n");
+		   printf("*\n*");
 		}
 		//		*********************************************************************************
 		//RECHERCHE un medicament par code
@@ -229,9 +229,9 @@
                     }
                 
                 if(trouver)
-                printf("ce medicament en stock");
+                printf("ce medicament en stock\n");
                     else
-                    printf("introuvable");
+                    printf("introuvable \n");
         }
 
 
@@ -254,9 +254,9 @@
                         }
                 }	
                 if(trouver)   
-                    printf("ce medicament en stock");
+                    printf("ce medicament en stock\n");
                     else
-                    printf("introuvable");
+                    printf("introuvable\n");
         }
                 
         //		*********************************************************************************
@@ -265,7 +265,7 @@
             {
             
                 int i;
-                    printf(" les produits dont la quantité est inférieure à 3 son\n ");
+                    printf(" les produits dont la quantité est inferieure a 3 son\n ");
                 for(i=0;i<nm;i++)
             {
                     if(mdc[i].quantite<=3)
@@ -333,10 +333,10 @@
             struct tm* datee = localtime(&t);
             int i, code, quantite,count=0;
 
-                    printf("entrer le code du medicament : ");
+                    printf("entrer le code du medicament : \n");
                     scanf("%d", &code);
 
-                    printf("entrer la quantite du medicament :");
+                    printf("entrer la quantite du medicament : \n");
                     scanf("%d", &quantite);
             for (i = 0; i < nm; i++)
             {
