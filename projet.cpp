@@ -7,7 +7,7 @@
 
 		
 		
-		typedef struct produitAchete
+		typedef struct medicamentAchete
         {
 
 			float prix_TTC;
@@ -227,6 +227,7 @@
                 
                 if(trouver)
                 printf("ce medicament en stock\n");
+                 
                     else
                     printf("introuvable \n");
         }
@@ -235,21 +236,25 @@
                 void rechercheMedicamentParQuantite(){
                     
                     int i,Q;
-                    bool trouver=false;
+                   int trouver=0;
                     
                 printf("Entrer la quantite de medicament : \n");
                 scanf("%d",&Q); 
                 
                 for(i=0; i < nm; i++)
                 {
-                        if(mdc[i].quantite>=Q)
+                        if(mdc[i].quantite==Q)
                         {
-                            trouver=true;
+                            trouver=1;
+                            
                                             
                         }
                 }	
-                if(trouver)   
-                    printf("ce medicament en stock\n");
+                if(trouver==1) {
+                	 printf("ce medicament en stock\n");
+                       
+				}
+                   
                     else
                     printf("introuvable\n");
         }
@@ -361,7 +366,7 @@
 //		*********************************************************************************
 		 void statistiques(){
 
-            float prixT = 0 , moyenne = 0 ;
+            float prixTotale = 0 , moyenne = 0 ;
             int i , Totalquantite=0;
             float min, max;
             min = mdcv[0].prix_Total;
@@ -369,7 +374,7 @@
             
             for(i=0;i<nmv ;i++)
             {
-                    prixT += mdcv[i].prix_Total ; //somme prix produit vendu
+                    prixTotale += mdcv[i].prix_Total ; //somme prix produit vendu
                     Totalquantite+=mdcv[i].quantite;
                 
                 if(max < mdcv[i].prix_Total)
@@ -381,9 +386,9 @@
                     min = mdcv[i].prix_Total;
                 }
             }
-            moyenne = prixT/(float)Totalquantite ;
+            moyenne = prixTotale/(float)Totalquantite ;
                
-            printf("le total des prix des medicament vendus est = %.2f\n",prixT);
+            printf("le total des prix des medicament vendus est = %.2f\n",prixTotale);
             printf("la moyenne des prix des medicament vendus est = %.2f\n",moyenne);
             printf("le max des prix des medicament vendus aujourd'hui  : %f\n",max);
             printf("le min des prix des medicament vendus aujourd'hui  : %f\n",min);
