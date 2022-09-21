@@ -4,15 +4,12 @@
 #include<stdbool.h>
 #include<time.h>
 		
-	    typedef struct Date 
-        {
-	      int day ,month ,year;
-        }date;
+
 		
 		
 		typedef struct produitAchete
         {
-			date  d;
+
 			float prix_TTC;
 			float prix_Total;
 			char nom[20];
@@ -234,9 +231,7 @@
                     printf("introuvable \n");
         }
 
-
-
-                //RECHERCHE un medicament par  Quantite
+       //RECHERCHE un medicament par  Quantite
                 void rechercheMedicamentParQuantite(){
                     
                     int i,Q;
@@ -295,7 +290,6 @@
                       
                     }
         }  
-                
 
 //		*********************************************************************************
           void supprimerMedicament()
@@ -320,17 +314,10 @@
                       }
                       } 
          }
-		
-		
-	
-
 //		*********************************************************************************
 		
                 void acheterMedicament()
         {
-            // float prixproduits;
-            time_t t = time(NULL);
-            struct tm* datee = localtime(&t);
             int i, code, quantite,count=0;
 
                     printf("entrer le code du medicament : \n");
@@ -350,9 +337,6 @@
                         mdcv[nmv].prix_TTC = mdc[i].prix_TTC;
                         mdcv[nmv].quantite = quantite;
                         mdcv[nmv].prix_Total = quantite * mdc[i].prix_TTC;
-                        mdcv[nmv].d.day =datee->tm_mday ;
-                        mdcv[nmv].d.month =datee->tm_mon+1 ;
-                        mdcv[nmv].d.year =datee->tm_year+1900 ;
 
                         nmv++;
                     }
@@ -376,25 +360,18 @@
         } 
 //		*********************************************************************************
 		 void statistiques(){
-            time_t t = time(NULL);
-            struct tm* datee = localtime(&t);
-            int jour = datee->tm_mday;
-            int mois = datee->tm_mon + 1;
-            int annee = datee->tm_year + 1900;
+
             float prixT = 0 , moyenne = 0 ;
             int i , Totalquantite=0;
             float min, max;
-            //&&produitvendu[i].d.month==mois&&produitvendu[i].d.year==annee
             min = mdcv[0].prix_Total;
             max = mdcv[0].prix_Total;
             
             for(i=0;i<nmv ;i++)
             {
-                if(mdcv[i].d.day==jour&&mdcv[i].d.month==mois&&mdcv[i].d.year==annee)
-                {
                     prixT += mdcv[i].prix_Total ; //somme prix produit vendu
                     Totalquantite+=mdcv[i].quantite;
-                }
+                
                 if(max < mdcv[i].prix_Total)
                 {
                     max = mdcv[i].prix_Total;
@@ -405,17 +382,14 @@
                 }
             }
             moyenne = prixT/(float)Totalquantite ;
-                    // printf("la somme des prix de votre produits vendus est -----> %.3f DH\n",);
-            // printf("le nombres de votre produits vendus est ----->%d PRODUITS\n\n\n",totalquantite);
+               
             printf("le total des prix des medicament vendus est = %.2f\n",prixT);
             printf("la moyenne des prix des medicament vendus est = %.2f\n",moyenne);
             printf("le max des prix des medicament vendus aujourd'hui  : %f\n",max);
             printf("le min des prix des medicament vendus aujourd'hui  : %f\n",min);
         }
 //		*********************************************************************************
- 
-
-		//    MAIN
+ 		//    MAIN
 		
 		int main(){
 			
