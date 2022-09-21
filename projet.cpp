@@ -2,10 +2,8 @@
 #include<stdlib.h>
 #include<string.h>
 #include<stdbool.h>
-#include<time.h>
-		
 
-		
+	
 		
 		typedef struct medicamentAchete
         {
@@ -212,32 +210,32 @@
             void rechercherParCode(){
             int i,n;
 
-            bool trouver = true;
+//            bool trouver = true;
             printf("Entrer le code  :\n");
-                scanf("%d",&nm); 
+                scanf("%d",&n); 
         
                 for(i=0; i < nm; i++)
                 {
                         if(mdc[i].code==n)
                         {
-                    trouver = false;
-                    
-                        }
-                    }
-                
-                if(trouver)
-                printf("ce medicament en stock\n");
-                 
-                    else
+                        
+                  			printf("ce medicament en stock\n");
+                 			printf("nom=>  %s  \n",mdc[i].nom);
+                            printf("code=> %d  \n",mdc[i].code);
+                            printf("quantite=> %d\n",mdc[i].quantite);
+                            printf("prix=> %.2f\n",mdc[i].prix);
+				}
+             else
                     printf("introuvable \n");
+
         }
+        
+    }
 
        //RECHERCHE un medicament par  Quantite
                 void rechercheMedicamentParQuantite(){
                     
                     int i,Q;
-                   int trouver=0;
-                    
                 printf("Entrer la quantite de medicament : \n");
                 scanf("%d",&Q); 
                 
@@ -245,20 +243,15 @@
                 {
                         if(mdc[i].quantite==Q)
                         {
-                            trouver=1;
-                            
+                          	 printf("ce medicament en stock\n");
                                             
                         }
-                }	
-                if(trouver==1) {
-                	 printf("ce medicament en stock\n");
-                       
-				}
-                   
-                    else
+                	
+                else
                     printf("introuvable\n");
-        }
-                
+                   }   
+				}
+             
         //		*********************************************************************************
 
             void etatDeStock()
@@ -299,7 +292,7 @@
 //		*********************************************************************************
           void supprimerMedicament()
  		{
-	            int i ,c,j;
+	            int i ,c,place;
                    
                     printf("entre le code de medicament que tu vous supprimer : \n");
                       scanf ("%d",&c);
@@ -309,8 +302,8 @@
                        if(c == mdc[i].code )
                       {
                          printf("%d",i);
-                            j = i;
-                         for (i=j;i<nm;i++)
+                            place = i;
+                         for (i=place;i<nm;i++)
                          {
                              mdc[i]=mdc[i+1];
                              nm--;
