@@ -41,12 +41,20 @@
 		
 		void ajouterMedicament()
 			{
-				
+				int i;
 					printf("entrer le nom de medicament : \n");
 					scanf("%s",mdc[nm].nom);
+					
+					reture:
 					printf("entrer le code de medicament : \n");
 					scanf("%d",&mdc[nm].code);
-				
+					for(i=0; i<nm; i++){
+						if(mdc[nm].code==mdc[i].code){
+							printf("deja ce code entre\n!! ");
+						   goto reture ;
+						}
+					}
+					
 					printf("entrer la quantite de medicament : \n");
 					scanf("%d",&mdc[nm].quantite);
 					
