@@ -351,6 +351,7 @@
                     if (mdc[i].quantite >= quantite)
                     {
                         mdc[i].quantite -= quantite;
+                        
                         mdcv[nmv].code = mdc[i].code;
                         strcpy(mdcv[nmv].nom,mdc[i].nom);
                         mdcv[nmv].prix_TTC = mdc[i].prix_TTC;
