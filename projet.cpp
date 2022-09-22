@@ -103,8 +103,8 @@
 		
 		
 		//		*********************************************************************************
-		//  STRCMP Cette fonction permet de comparer deux chaînes de caractères et de savoir
-		// si la première est inférieure, égale ou supérieure à la seconde
+		//  STRCMP Cette fonction permet de comparer deux chaï¿½nes de caractï¿½res et de savoir
+		// si la premiï¿½re est infï¿½rieure, ï¿½gale ou supï¿½rieure ï¿½ la seconde
 		//fonctionlisterSelonL'ordreAlphabetique
 
 		void listerSelonLordreAlphabetique()
@@ -132,7 +132,7 @@
             void listerSelonDecroissantPrix()
             {
                 int i, j;
-                j=i+1;
+                
                     for(i=0;i<nm;i++)
                     {
                         for(j=i+1;j<nm;j++)
@@ -210,7 +210,7 @@
             void rechercherParCode(){
             int i,n;
 
-//            bool trouver = true;
+
             printf("Entrer le code  :\n");
                 scanf("%d",&n); 
         
@@ -224,6 +224,8 @@
                             printf("code=> %d  \n",mdc[i].code);
                             printf("quantite=> %d\n",mdc[i].quantite);
                             printf("prix=> %.2f\n",mdc[i].prix);
+                            
+                            break;
 				}
              else
                     printf("introuvable \n");
@@ -243,13 +245,13 @@
                 {
                         if(mdc[i].quantite==Q)
                         {
-                          	 printf("ce medicament en stock\n");
-                                            
+                          	 printf("en stock\n");
+                                break;            
                         }
-                	
-                else
+                	else
                     printf("introuvable\n");
                    }   
+                   
 				}
              
         //		*********************************************************************************
@@ -258,10 +260,10 @@
             {
             
                 int i;
-                    printf(" les produits dont la quantité est inferieure a 3 son\n ");
+                    printf(" les medicament dont la quantite est inferieure a 3 son\n ");
                 for(i=0;i<nm;i++)
             {
-                    if(mdc[i].quantite<=3)
+                    if(mdc[i].quantite<3)
                     {
                             printf("nom=>  %s  \n",mdc[i].nom);
                             printf("code=> %d  \n",mdc[i].code);
@@ -283,7 +285,10 @@
                      {
                         if(mdc[i].code==c)
                         {
-                           mdc[i].quantite += Q; //medicament[i].quantite =medicament[i].quantite + Q
+                        	 
+                           mdc[i].quantite += Q; //medicament[i].quantite =medicament[i].quantite + Q 
+                          
+                           
                         }
                       
                     }
@@ -316,7 +321,7 @@
 		
                 void acheterMedicament()
         {
-            int i, code, quantite,count=0;
+            int i, code, quantite, dernier=0;
 
                     printf("entrer le code du medicament : \n");
                     scanf("%d", &code);
@@ -337,6 +342,7 @@
                         mdcv[nmv].prix_Total = quantite * mdc[i].prix_TTC;
 
                         nmv++;
+                        
                     }
                     else
                     {
@@ -345,14 +351,16 @@
                     break;
                 }
                 else{
-                    count++;//pour chercher si le code existe et refaire condition jusqua la derniere case du tableau 
+                     dernier++;//pour chercher si le code existe et refaire condition jusqua la derniere case du tableau 
                 }
             }
-            if(count==nm){
+            if( dernier==nm){
                         printf("produit introuvable\n");
             }
 
             for( i = 0 ; i < nmv ; i++){
+            	
+            	printf(" code      prix_TTC      quantite \n");
                 printf("%d          %f         %d \n",mdcv[i].code, mdcv[i].prix_TTC , mdcv[i].quantite);
             }
         } 
@@ -367,7 +375,7 @@
             
             for(i=0;i<nmv ;i++)
             {
-                    prixTotale += mdcv[i].prix_Total ; //somme prix produit vendu
+                    prixTotale += mdcv[i].prix_Total ;
                     Totalquantite+=mdcv[i].quantite;
                 
                 if(max < mdcv[i].prix_Total)
