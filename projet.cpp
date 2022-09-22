@@ -46,8 +46,16 @@
 					scanf("%s",mdc[nm].nom);
 					printf("entrer le code de medicament : \n");
 					scanf("%d",&mdc[nm].code);
+				
 					printf("entrer la quantite de medicament : \n");
 					scanf("%d",&mdc[nm].quantite);
+					
+					while(mdc[nm].quantite<0){
+					printf("la quantite negative\n");
+					printf("entrer la quantite du medicament : \n");
+					scanf("%d",&mdc[nm].quantite);
+					}
+					
 					printf("entrer le prix de medicament : \n");
 					scanf("%f",&mdc[nm].prix);
 					
@@ -82,7 +90,7 @@
 		       {
 			    	printf("   le nom      |             code                  |       quantite\n");
 			    	printf("--------- -----|-----------------------------------|-------------------\n");
-			     	printf("      %s       |                %d                 |      %d          \n",
+			     	printf("     %s       |                %d                 |      %d          \n",
                     mdc[i].nom,mdc[i].code,mdc[i].quantite);
 			       
 			       		                    	printf("  le prix  \n ");
