@@ -327,9 +327,9 @@
                          for (i=place;i<nm;i++)
                          {
                              mdc[i]=mdc[i+1];
-                             nm--;
-                             break;
                          }
+                         
+                        nm--;
                       }
                       } 
          }
